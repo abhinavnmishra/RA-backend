@@ -79,13 +79,13 @@ module.exports = {
             type: Sequelize.FLOAT,
         },
         description: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT,
         },
         rating: {
             type: Sequelize.INTEGER,
         },
         url: {
-            type: Sequelize.STRING,
+            type: Sequelize.TEXT,
         }
     },
 
