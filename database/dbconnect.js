@@ -14,7 +14,9 @@ const connection = new Sequelize(credentials.database, credentials.user, credent
 
 const Customer = connection.define("customer", models.customer);
 const Admin = connection.define("admin", models.admin);
+const FoodItem = connection.define("foodItem", models.foodItem);
+const Order = connection.define("order", models.order);
 
 connection.sync();
 
-module.exports = {connection,Customer,Admin};
+module.exports = {connection,Customer,Admin,FoodItem,Order};

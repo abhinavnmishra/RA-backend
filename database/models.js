@@ -61,6 +61,51 @@ module.exports = {
         token: {
             type: Sequelize.STRING,
         }
-    }
+    },
 
+    foodItem : {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        name: {
+            type: Sequelize.STRING,
+        },
+        veg: {
+            type: Sequelize.BOOLEAN,
+        },
+        price: {
+            type: Sequelize.FLOAT,
+        },
+        description: {
+            type: Sequelize.STRING,
+        },
+        rating: {
+            type: Sequelize.INTEGER,
+        },
+        url: {
+            type: Sequelize.STRING,
+        }
+    },
+
+    order : {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        foodItemId: {
+            type: Sequelize.INTEGER,
+        },
+        customerId: {
+            type: Sequelize.INTEGER,
+        },
+        quantity: {
+            type: Sequelize.INTEGER,
+        },
+        totalPrice: {
+            type: Sequelize.FLOAT,
+        }
+    }
 }

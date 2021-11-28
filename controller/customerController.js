@@ -9,8 +9,9 @@ const getHashedPassword = (password) => {
     return sha256.update(password).digest('base64');
 }
 
-router.get('/', function(req, res){
-    res.send("Customer");
+router.get('/', async function (req, res) {
+    const users = await dbconnect.Customer.findAll();
+    res.send(users);
 });
 
 router.post('/new', function(req, res){
@@ -29,17 +30,10 @@ router.post('/new', function(req, res){
         if (article) {
             res.send(article);
         } else {
-            res.status(400).send('Error in insert new record');
+            res.status(400).send('Error in inserting new record');
         }
     });
 });
 
-router.get('/password/:pass', function(req, res){
-    res.send(auth.getHashedPassword(req.params.pass));
-});
-
-router.get('/auth/', function(req, res){
-    res.send(auth.generateAuthToken());
-});
 
 module.exports = router;
