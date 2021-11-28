@@ -4,7 +4,12 @@ const models = require('./models');
 
 const connection = new Sequelize(credentials.database, credentials.user, credentials.password, {
     host: credentials.host,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
 });
 
 const Customer = connection.define("customer", models.customer);
