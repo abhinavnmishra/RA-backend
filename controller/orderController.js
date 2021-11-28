@@ -10,11 +10,20 @@ router.get('/', async function (req, res) {
 
 router.post('/new', function(req, res){
 
+    let total = 0.0;
+    let items = req.body.foodItem;
+
+    items.forEach(calculate);
+
+    async function calculate(value, index, array) {
+        const food = await dbconnect.FoodItem.findByPk(value.id);
+        total = total + food.price * value.quantity;
+    }
+
     return dbconnect.Order.create({
-        foodItemId: req.body.foodItemId,
+        foodItem: req.body.foodItem,
         customerId: req.body.customerId,
-        quantity: req.body.quantity,
-        totalPrice: req.body.totalPrice
+        totalPrice: total
 
     }).then(function (article) {
         if (article) {
@@ -24,5 +33,9 @@ router.post('/new', function(req, res){
         }
     });
 });
+
+async function query(sql, params){
+    return null;
+}
 
 module.exports = router;

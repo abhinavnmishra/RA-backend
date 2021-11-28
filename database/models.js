@@ -95,13 +95,10 @@ module.exports = {
             autoIncrement: true,
             primaryKey: true
         },
-        foodItemId: {
-            type: Sequelize.INTEGER,
+        foodItem: {
+            type: Sequelize.JSON,
         },
         customerId: {
-            type: Sequelize.INTEGER,
-        },
-        quantity: {
             type: Sequelize.INTEGER,
         },
         totalPrice: {
