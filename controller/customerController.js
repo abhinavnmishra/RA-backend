@@ -24,7 +24,7 @@ router.post('/new', function(req, res){
         email: req.body.email,
         address: req.body.address,
         password: getHashedPassword(req.body.password),
-        user: 0
+        user: 1
 
     }).then(function (article) {
         if (article) {
