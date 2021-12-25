@@ -15,12 +15,18 @@ router.get('/', async function (req, res) {
 });
 
 router.get('/getByToken', async function (req, res) {
-    const order = await dbconnect.Order.findAll({
+    dbconnect.Customer.findAll({
         where: {
             token: req.query.token
         }
+    }).then(function (customers){
+        if (customers.length!==0){
+            res.send(customers[0]);
+        }
+        else {
+            res.send(false);
+        }
     });
-    res.send(order[0]);
 });
 
 router.post('/new', function(req, res){
