@@ -8,6 +8,11 @@ router.get('/', async function (req, res) {
     res.send(orders);
 });
 
+router.get('/getById', async function (req, res) {
+    const order = await dbconnect.Order.findByPk(req.query.id);
+    res.send(order);
+});
+
 router.post('/new', function(req, res){
 
     let total = 0.0;
