@@ -14,6 +14,15 @@ router.get('/', async function (req, res) {
     res.send(users);
 });
 
+router.get('/getByToken', async function (req, res) {
+    const order = await dbconnect.Order.findAll({
+        where: {
+            token: req.query.token
+        }
+    });
+    res.send(order[0]);
+});
+
 router.post('/new', function(req, res){
 
     return dbconnect.Customer.create({
@@ -26,12 +35,14 @@ router.post('/new', function(req, res){
 
     }).then(function (article) {
         if (article) {
-            res.send(article);
+            res.send(true);
         } else {
             res.status(400).send('Error in inserting new record');
         }
     });
 });
+
+
 
 
 module.exports = router;
