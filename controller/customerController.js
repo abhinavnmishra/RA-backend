@@ -18,11 +18,9 @@ router.post('/new', function(req, res){
 
     return dbconnect.Customer.create({
         id: req.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
+        firstName: req.body.name,
         mobile: req.body.mobile,
         email: req.body.email,
-        address: req.body.address,
         password: getHashedPassword(req.body.password),
         user: 1
 

@@ -8,19 +8,13 @@ module.exports = {
             autoIncrement: true,
             primaryKey: true
             },
-        firstName: {
-            type: Sequelize.STRING,
-        },
-        lastName: {
+        name: {
             type: Sequelize.STRING,
         },
         mobile: {
             type: Sequelize.STRING,
         },
         email: {
-            type: Sequelize.STRING,
-        },
-        address: {
             type: Sequelize.STRING,
         },
         password: {
