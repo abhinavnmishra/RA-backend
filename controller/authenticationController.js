@@ -74,7 +74,7 @@ router.post('/login', (req, res) => {
                             replacements: {username: username},
                             type: Sequelize.QueryTypes.SELECT
                         }).then(function (result3) {
-                            res.send(result3[0]);
+                            res.send({message: true, token: result3[0].token});
                         });
                     }
                     else {
