@@ -21,10 +21,10 @@ router.get('/getByToken', async function (req, res) {
         }
     }).then(function (customers){
         if (customers.length!==0){
-            res.send(customers[0]);
+            res.status(200).send(customers[0]);
         }
         else {
-            res.send(false);
+            res.status(400).send(false);
         }
     });
 });
@@ -41,7 +41,7 @@ router.post('/new', function(req, res){
 
     }).then(function (article) {
         if (article) {
-            res.send(true);
+            res.status(200).send(true);
         } else {
             res.status(400).send('Error in inserting new record');
         }
