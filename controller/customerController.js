@@ -41,7 +41,7 @@ router.post('/new', function(req, res){
 
     }).then(function (article) {
         if (article) {
-            res.status(200).send(true);
+            res.status(200).send({message: true});
         } else {
             res.status(400).send('Error in inserting new record');
         }
