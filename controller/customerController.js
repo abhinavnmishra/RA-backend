@@ -43,8 +43,10 @@ router.post('/new', function(req, res){
         if (article) {
             res.status(200).send({message: true});
         } else {
-            res.status(400).send('Error in inserting new record');
+            res.status(400).send({message:'Error creating user'});
         }
+    }).catch(function (except){
+        res.status(400).send({message:'Error creating user'});
     });
 });
 
