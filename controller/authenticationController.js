@@ -89,13 +89,13 @@ router.post('/login', (req, res) => {
             }
             else
                 res.send({
-                    message: 'Incorrect password',
+                    message: 'Error logging in',
                     messageClass: 'alert-danger'
                 });
 
         } else {
             res.send({
-                message: 'Invalid username or password',
+                message: 'Error logging in',
                 messageClass: 'alert-danger'
             });
         }
