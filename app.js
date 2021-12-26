@@ -7,6 +7,7 @@ var logger = require('morgan');
 var adminController = require('./controller/adminController');
 var orderController = require('./controller/orderController');
 var customerController = require('./controller/customerController');
+var constantsController = require('./controller/constantController');
 var foodItemController = require('./controller/foodItemController');
 var authenticationController = require('./controller/authenticationController');
 
@@ -27,6 +28,7 @@ app.use('/customer', customerController);
 app.use('/authentication', authenticationController);
 app.use('/foodItem', foodItemController);
 app.use('/order', orderController);
+app.use('/constants', constantsController);
 
 
 // catch 404 and forward to error handler

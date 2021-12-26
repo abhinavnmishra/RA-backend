@@ -98,5 +98,22 @@ module.exports = {
         totalPrice: {
             type: Sequelize.FLOAT,
         }
+    },
+
+    constants : {
+        id: {
+            type: Sequelize.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        key: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            unique: true
+        },
+        value: {
+            type: Sequelize.FLOAT,
+            allowNull: false
+        }
     }
 }
