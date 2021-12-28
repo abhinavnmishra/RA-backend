@@ -37,4 +37,22 @@ router.post('/new', function(req, res){
     });
 });
 
+router.post('/update', function(req, res){
+
+    return dbconnect.Constants.update({
+        key: req.body.key,
+        value: req.body.value,
+    },{
+        where: {
+            key: req.body.key
+        }
+    }).then(function (constant) {
+        if (constant) {
+            res.send(constant);
+        } else {
+            res.status(400).send('Error in inserting new record');
+        }
+    });
+});
+
 module.exports = router;
