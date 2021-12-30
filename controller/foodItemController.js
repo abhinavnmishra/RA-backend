@@ -4,12 +4,12 @@ const dbconnect = require('../database/dbconnect');
 
 
 router.get('/', async function (req, res) {
-    dbconnect.Admin.findAll({
+    dbconnect.Customer.findAll({
         where: {
             token: req.query.token
         }
-    }).then(async function (admin) {
-        if (admin.length !== 0) {
+    }).then(async function (customer) {
+        if (customer.length !== 0) {
             const items = await dbconnect.FoodItem.findAll();
             res.status(200).send(items);
         } else {
