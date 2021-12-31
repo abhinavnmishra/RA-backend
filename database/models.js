@@ -69,7 +69,7 @@ module.exports = {
             type: Sequelize.STRING,
         },
         veg: {
-            type: Sequelize.BOOLEAN,
+            type: Sequelize.STRING,
         },
         price: {
             type: Sequelize.FLOAT,
