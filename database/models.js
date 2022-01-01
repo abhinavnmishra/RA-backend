@@ -78,7 +78,7 @@ module.exports = {
             type: Sequelize.TEXT,
         },
         rating: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
         },
         url: {
             type: Sequelize.TEXT,
