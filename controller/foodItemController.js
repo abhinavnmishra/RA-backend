@@ -23,7 +23,7 @@ router.post('/new', function(req, res){
 
     return dbconnect.FoodItem.create({
         name: req.body.name,
-        veg: req.body.veg,
+        type: req.body.type,
         price: req.body.price,
         description: req.body.description,
         rating: req.body.rating,

@@ -68,7 +68,7 @@ module.exports = {
         name: {
             type: Sequelize.STRING,
         },
-        veg: {
+        type: {
             type: Sequelize.STRING,
         },
         price: {
