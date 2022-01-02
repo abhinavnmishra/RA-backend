@@ -1,2 +1,2 @@
-wen: npm install --save-dev nodemon
+web: npm install --save-dev cors
 web: node app.js
