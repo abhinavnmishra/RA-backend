@@ -1,2 +1,2 @@
-web: npm install --save-dev cors
+web: npm install cors --save
 web: node app.js
