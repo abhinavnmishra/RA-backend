@@ -74,27 +74,27 @@ router.post('/login', (req, res) => {
                             replacements: {username: username},
                             type: Sequelize.QueryTypes.SELECT
                         }).then(function (result3) {
-                            res.send({message: true, token: result3[0].token});
+                            res.status(200).send({message: true, token: result3[0].token});
                         });
                     }
                     else {
-                        res.send({
+                        res.status(200).send({
                             message: 'Error logging in',
                             messageClass: 'alert-danger'
                         });
                     }
 
-                    res.send(result2);
+                    res.status(200).send(result2);
                 });
             }
             else
-                res.send({
+                res.status(200).send({
                     message: 'Error logging in',
                     messageClass: 'alert-danger'
                 });
 
         } else {
-            res.send({
+            res.status(200).send({
                 message: 'Error logging in',
                 messageClass: 'alert-danger'
             });
@@ -127,11 +127,11 @@ router.post('/logout', (req, res) => {
                 replacements: {id: user.id},
                 type: Sequelize.QueryTypes.UPDATE
             }).then(function (result2) {
-                res.send(true);
+                res.status(200).send(true);
             });
 
         } else {
-            res.send({
+            res.status(200).send({
                 message: 'Invalid token',
                 messageClass: 'alert-danger'
             });
