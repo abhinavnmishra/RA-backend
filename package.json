@@ -20,7 +20,9 @@
     "sequelize": "^6.8.0"
   },
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "cors": "^2.8.5"
+  },
   "author": "",
   "license": "ISC",
   "description": ""
