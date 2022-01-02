@@ -74,26 +74,42 @@ router.post('/login', (req, res) => {
                             replacements: {username: username},
                             type: Sequelize.QueryTypes.SELECT
                         }).then(function (result3) {
+                            res.append('Access-Control-Allow-Origin', ['*']);
+                            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                            res.append('Access-Control-Allow-Headers', 'Content-Type');
                             res.status(200).send({message: true, token: result3[0].token});
                         });
                     }
                     else {
+                        res.append('Access-Control-Allow-Origin', ['*']);
+                        res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                        res.append('Access-Control-Allow-Headers', 'Content-Type');
                         res.status(200).send({
                             message: 'Error logging in',
                             messageClass: 'alert-danger'
                         });
                     }
 
+                    res.append('Access-Control-Allow-Origin', ['*']);
+                    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                    res.append('Access-Control-Allow-Headers', 'Content-Type');
                     res.status(200).send(result2);
                 });
             }
-            else
+            else {
+                res.append('Access-Control-Allow-Origin', ['*']);
+                res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                res.append('Access-Control-Allow-Headers', 'Content-Type');
                 res.status(200).send({
                     message: 'Error logging in',
                     messageClass: 'alert-danger'
                 });
+            }
 
         } else {
+            res.append('Access-Control-Allow-Origin', ['*']);
+            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.append('Access-Control-Allow-Headers', 'Content-Type');
             res.status(200).send({
                 message: 'Error logging in',
                 messageClass: 'alert-danger'
@@ -127,10 +143,16 @@ router.post('/logout', (req, res) => {
                 replacements: {id: user.id},
                 type: Sequelize.QueryTypes.UPDATE
             }).then(function (result2) {
+                res.append('Access-Control-Allow-Origin', ['*']);
+                res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+                res.append('Access-Control-Allow-Headers', 'Content-Type');
                 res.status(200).send(true);
             });
 
         } else {
+            res.append('Access-Control-Allow-Origin', ['*']);
+            res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.append('Access-Control-Allow-Headers', 'Content-Type');
             res.status(200).send({
                 message: 'Invalid token',
                 messageClass: 'alert-danger'
