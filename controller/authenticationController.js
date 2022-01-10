@@ -51,7 +51,6 @@ router.post('/login', (req, res) => {
         let user = result[0];
         if (user) {
 
-            console.log("##################");
             console.log(user);
             let query;
             if (user.password === hashedPassword){

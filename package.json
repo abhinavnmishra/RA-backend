@@ -19,7 +19,8 @@
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
     "pug": "^3.0.2",
-    "sequelize": "^6.8.0"
+    "sequelize": "^6.8.0",
+    "xlsx": "^0.17.4"
   },
   "main": "app.js",
   "devDependencies": {

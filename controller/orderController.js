@@ -1,34 +1,55 @@
 var express = require('express');
 var router = express.Router();
 const dbconnect = require('../database/dbconnect');
+const Sequelize = require("sequelize");
 
+
+async function validate(req){
+    if (Object.keys(req.query).length === 0)
+        return 1;
+    const token = req.query.token;
+    let querySelect = 'select a.id, a.email email, a.mobile mobile, a.password, a.user, a.token from admins a where token = :token union all select c.id, c.email email, c.mobile mobile, c.password, c.user, c.token from customers c where token = :token;';
+
+    let result = await dbconnect.connection.query(querySelect, {
+        replacements: {token: token},
+        type: Sequelize.QueryTypes.SELECT
+    });
+    if (result.length === 0){
+        return null;
+    }
+    else
+        return result[0];
+}
 
 router.get('/', async function (req, res) {
-    const orders = await dbconnect.Order.findAll();
-    res.send(orders);
+
+    let user = await validate(req);
+    if (user != null){
+        const orders = await dbconnect.Order.findAll();
+        res.send(orders);
+    }
+    else{
+        res.status(400).send(false);
+    }
 });
 
 router.get('/getById', async function (req, res) {
-    const order = await dbconnect.Order.findByPk(req.query.id);
-    res.send(order);
+    let user = await validate(req);
+    if (user != null){
+        const order = await dbconnect.Order.findByPk(req.query.id);
+        res.send(order);
+    }
+    else{
+        res.status(400).send(false);
+    }
 });
 
 router.post('/new', function(req, res){
 
-    let total = 0.0;
-    let items = req.body.foodItem;
-
-    items.forEach(calculate);
-
-    async function calculate(value, index, array) {
-        const food = await dbconnect.FoodItem.findByPk(value.id);
-        total = total + food.price * value.quantity;
-    }
-
     return dbconnect.Order.create({
         foodItem: req.body.foodItem,
         customerId: req.body.customerId,
-        totalPrice: total
+        totalPrice: req.body.price
 
     }).then(function (article) {
         if (article) {
