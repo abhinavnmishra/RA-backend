@@ -1,6 +1,7 @@
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../app');
+let should = chai.should();
 let XLSX = require('xlsx')
 let workbook = XLSX.readFile('test/testcase2.xlsx');
 let sheet_name_list = workbook.SheetNames;
@@ -29,21 +30,25 @@ describe("User Account", () => {
                     .post('/customer/new')
                     .send(item)
                     .end((err, res) => {
+                        should.exist(res.body);
                         res.should.have.status(200);
                         res.body.should.be.a('object');
                         res.body.should.have.property('message');
-                        res.body.message.should.be.eql(true);
                         done();
                     });
             });
 
         });
 
-        describe('/GET login', () => {
+        let loginBody = {username: item.email, password: item.password}
+
+        describe('/POST login', () => {
             it('it should login into customer account created', (done) => {
                 chai.request(server)
-                    .get('/authentication/login')
+                    .post('/authentication/login')
+                    .send(loginBody)
                     .end((err, res) => {
+                        should.exist(res.body);
                         res.should.have.status(200);
                         res.body.should.be.a('object');
                         res.body.should.have.property('token');
@@ -59,6 +64,7 @@ describe("User Account", () => {
                 chai.request(server)
                     .get('/foodItem?token='+token)
                     .end((err, res) => {
+                        should.exist(res.body);
                         res.should.have.status(200);
                         res.body.should.be.a('array');
                         done();
@@ -74,6 +80,7 @@ describe("User Account", () => {
                     .post('/authentication/logout')
                     .send(logoutBody)
                     .end((err, res) => {
+                        should.exist(res.body);
                         res.should.have.status(200);
                         //res.body.message.should.be.eql(true);
                         done();
