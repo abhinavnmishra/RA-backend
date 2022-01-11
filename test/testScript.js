@@ -3,6 +3,10 @@ let chai = require('chai');
 let chaiHttp = require('chai-http');
 let server = require('../app');
 let should = chai.should();
+let XLSX = require('xlsx')
+let workbook = XLSX.readFile('test/testcase.xlsx');
+let sheet_name_list = workbook.SheetNames;
+let xlData = XLSX.utils.sheet_to_json(workbook.Sheets[sheet_name_list[0]]);
 
 
 chai.use(chaiHttp);
@@ -20,7 +24,7 @@ describe("Food Items", () => {
     describe('/GET foodItem', () => {
         it('it should GET all the foodItems', (done) => {
             chai.request(server)
-                .get('/foodItem?token=de0886678687731f26616f6b18a5ccd5c55058a0dd0ea03413456a99e652')
+                .get('/foodItem?token=a2efd9ca8c7801784bab350273cf0f140f631065d7ad645cf0dfc3435ec7')
                 .end((err, res) => {
                     res.should.have.status(200);
                     res.body.should.be.a('array');
@@ -31,31 +35,25 @@ describe("Food Items", () => {
     });
 
 
-    describe('/POST foodItem', () => {
-        it('it should create a food item', (done) => {
-            let foodItem = {
-                "name": "Chicken Soup",
-                "type": "non-veg",
-                "price": 200,
-                "description": "Chicken curry is a dish originating from the Indian subcontinent. It is common in the Indian subcontinent, Southeast Asia, Great Britain, and the Caribbean.",
-                "rating": "5",
-                "url": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.cookingclassy.com%2Fchicken-curry%2F&psig=AOvVaw2k0MN1rj5oVs93mOt1usIF&ust=1638187928227000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCNjPqd6Du_QCFQAAAAAdAAAAABAD"
-            }
-            chai.request(server)
-                .post('/foodItem/new?token=de0886678687731f26616f6b18a5ccd5c55058a0dd0ea03413456a99e652')
-                .send(foodItem)
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('id');
-                    res.body.type.should.be.eql(foodItem.type);
-                    res.body.name.should.be.eql(foodItem.name);
-                    // res.body.errors.should.have.property('pages');
-                    // res.body.errors.pages.should.have.property('kind').eql('required');
-                    done();
-                });
-        });
+    xlData.forEach(function (item, index) {
+        describe('/POST foodItem', () => {
+            it('it should create a food item ' + item.name, (done) => {
+                chai.request(server)
+                    .post('/foodItem/new?token=a2efd9ca8c7801784bab350273cf0f140f631065d7ad645cf0dfc3435ec7')
+                    .send(item)
+                    .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('id');
+                        res.body.type.should.be.eql(item.type);
+                        res.body.name.should.be.eql(item.name);
+                        // res.body.errors.should.have.property('pages');
+                        // res.body.errors.pages.should.have.property('kind').eql('required');
+                        done();
+                    });
+            });
 
+        });
     });
 
 });
