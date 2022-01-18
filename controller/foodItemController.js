@@ -35,6 +35,7 @@ router.get('/', async function (req, res) {
 router.post('/update', async function(req, res){
 
     let user = await validate(req);
+    console.log(req);
 
     if (user != null) {
         return dbconnect.FoodItem.update({
