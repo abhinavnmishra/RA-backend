@@ -44,11 +44,12 @@ router.get('/getById', async function (req, res) {
     }
 });
 
-router.post('/new', function(req, res){
+router.post('/new', async function(req, res){
 
+    let user = await validate(req);
     return dbconnect.Order.create({
         foodItem: req.body.foodItem,
-        customerId: req.body.customerId,
+        customerId: user.id,
         totalPrice: req.body.price
 
     }).then(function (article) {
