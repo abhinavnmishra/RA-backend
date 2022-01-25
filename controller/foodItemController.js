@@ -57,7 +57,7 @@ router.post('/update', async function(req, res){
             url: req.body.url
         },{
             where: {
-                id: req.body.id
+                id: req.query.id
             }
         }).then(function (food) {
             if (food) {
