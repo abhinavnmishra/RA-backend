@@ -20,7 +20,6 @@ async function validate(req){
         return result[0];
 }
 
-
 router.get('/', async function (req, res) {
 
     let user = await validate(req);
