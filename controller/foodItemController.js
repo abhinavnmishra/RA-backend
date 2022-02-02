@@ -24,6 +24,7 @@ router.get('/', async function (req, res) {
 
     let user = await validate(req);
 
+    console.log(user);
     if (user != null) {
         const items = await dbconnect.FoodItem.findAll();
         res.status(200).send(items);
