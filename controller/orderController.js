@@ -46,7 +46,6 @@ router.get('/getById', async function (req, res) {
     }
 });
 
-
 router.post('/new', async function(req, res){
 
     let user = await validate(req);
