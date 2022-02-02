@@ -47,7 +47,11 @@ router.get('/getById', async function (req, res) {
 router.get('/delete', async function (req, res) {
     let user = await validate(req);
     if (user != null){
-        const order = await dbconnect.FoodItem.delete(req.query.id);
+        const order = await dbconnect.FoodItem.destroy({
+        where: {
+            id: req.query.id
+        }
+    });
         res.send(order);
     }
     else{
