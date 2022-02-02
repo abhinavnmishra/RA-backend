@@ -25,7 +25,9 @@ router.get('/', async function (req, res) {
 
     let user = await validate(req);
     if (user != null){
-        const orders = await dbconnect.Order.findAll();
+        const orders = await dbconnect.Order.findAll({
+            where: {customerId: user.id}
+        });
         res.send(orders);
     }
     else{
