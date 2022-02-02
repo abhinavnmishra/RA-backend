@@ -35,7 +35,7 @@ router.get('/', async function (req, res) {
 
 router.get('/getById', async function (req, res) {
     let user = await validate(req);
-    if (user != null && req.query.id != null){
+    if (user != null && req.query.id !== "null"){
         const order = await dbconnect.FoodItem.findByPk(req.query.id);
         res.send(order);
     }
