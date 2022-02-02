@@ -52,7 +52,7 @@ router.get('/delete', async function (req, res) {
             id: req.query.id
         }
     });
-        res.send(order);
+        res.status(200).send(order);
     }
     else{
         res.status(400).send(false);
