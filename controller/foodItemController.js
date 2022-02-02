@@ -25,6 +25,7 @@ router.get('/', async function (req, res) {
 
     let user = await validate(req);
 
+    console.log(user);
     if (user != null) {
         const items = await dbconnect.FoodItem.findAll();
         res.status(200).send(items);
@@ -37,6 +38,17 @@ router.get('/getById', async function (req, res) {
     let user = await validate(req);
     if (user != null){
         const order = await dbconnect.FoodItem.findByPk(req.query.id);
+        res.send(order);
+    }
+    else{
+        res.status(400).send(false);
+    }
+});
+
+router.get('/delete', async function (req, res) {
+    let user = await validate(req);
+    if (user != null){
+        const order = await dbconnect.FoodItem.delete(req.query.id);
         res.send(order);
     }
     else{
