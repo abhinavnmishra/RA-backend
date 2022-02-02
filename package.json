@@ -24,7 +24,6 @@
   },
   "main": "app.js",
   "devDependencies": {
-    "cors": "^2.8.5"
   },
   "author": "",
   "license": "ISC",
