@@ -45,17 +45,21 @@ router.get('/getById', async function (req, res) {
 });
 
 router.get('/delete', async function (req, res) {
-    let user = await validate(req);
-    if (user != null){
-        const order = await dbconnect.FoodItem.destroy({
-        where: {
-            id: req.query.id
+    try {
+        let user = await validate(req);
+        if (user != null) {
+            const order = await dbconnect.FoodItem.destroy({
+                where: {
+                    id: req.query.id
+                }
+            });
+            res.status(200).send(order);
+        } else {
+            res.status(400).send(false);
         }
-    });
-        res.status(200).send(order);
     }
-    else{
-        res.status(400).send(false);
+    catch (e) {
+        res.status(500).send(false);
     }
 });
 
