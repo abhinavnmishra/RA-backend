@@ -35,6 +35,18 @@ router.get('/', async function (req, res) {
     }
 });
 
+router.get('/getAll', async function (req, res) {
+
+    let user = await validate(req);
+    if (user != null){
+        const orders = await dbconnect.Order.findAll();
+        res.send(orders);
+    }
+    else{
+        res.status(400).send(false);
+    }
+});
+
 router.get('/getById', async function (req, res) {
     let user = await validate(req);
     if (user != null){
