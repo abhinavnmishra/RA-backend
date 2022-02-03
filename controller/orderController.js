@@ -28,7 +28,7 @@ router.get('/', async function (req, res) {
         const orders = await dbconnect.Order.findAll({
             where: {customerId: user.id}
         });
-        res.send(orders);
+        res.send({orders: orders});
     }
     else{
         res.status(400).send(false);
