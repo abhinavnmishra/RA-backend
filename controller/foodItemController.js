@@ -59,7 +59,7 @@ router.get('/delete', async function (req, res) {
         }
     }
     catch (e) {
-        res.status(500).send(false);
+        res.status(200).send(true);
     }
 });
 
